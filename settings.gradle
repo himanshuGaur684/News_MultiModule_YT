@@ -1,0 +1,22 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "News"
+include ':app'
+include ':news:news_data'
+include ':news:news_domain'
+include ':news:news_presentation'
+include ':search:search_data'
+include ':search:search_domain'
+include ':search:search_presentation'
