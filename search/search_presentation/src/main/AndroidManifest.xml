@@ -2,4 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vision.andorid.search_presentation">
 
+    <application>
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+    </application>
+
 </manifest>
