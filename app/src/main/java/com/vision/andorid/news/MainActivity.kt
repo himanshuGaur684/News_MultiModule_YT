@@ -1,7 +1,9 @@
 package com.vision.andorid.news
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.vision.andorid.common_utils.Activities
 import com.vision.andorid.common_utils.Navigator
@@ -21,11 +23,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.statusBarColor = ContextCompat.getColor(this,R.color.white)
-        _binding= ActivityMainBinding.inflate(layoutInflater)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        provider.getActivities(Activities.NewsActivity).navigate(this)
+        Handler(Looper.myLooper()!!).postDelayed({
+            provider.getActivities(Activities.NewsActivity).navigate(this)
+            finish()
+        }, 1500)
+
 
     }
 }

@@ -2,6 +2,7 @@ package com.vision.andorid.news_data.di
 
 import com.vision.andorid.news_data.network.NewsApiService
 import com.vision.andorid.news_data.repository.NewsRepoImpl
+import com.vision.andorid.news_data.room.NewsDAO
 import com.vision.andorid.news_domain.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
@@ -21,8 +22,8 @@ object NewsDataModule {
 
 
     @Provides
-    fun provideNewsRepository(newsApiService: NewsApiService):NewsRepository{
-        return NewsRepoImpl(newsApiService)
+    fun provideNewsRepository(newsApiService: NewsApiService,newsDAO: NewsDAO):NewsRepository{
+        return NewsRepoImpl(newsApiService,newsDAO)
     }
 
 }
