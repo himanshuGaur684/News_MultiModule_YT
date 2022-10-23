@@ -1,5 +1,6 @@
 package com.vision.andorid.search_data.repository
 
+import android.util.Log
 import com.vision.andorid.search_data.mappers.toDomainArticle
 import com.vision.andorid.search_data.network.SearchApi
 import com.vision.andorid.search_domain.model.Article

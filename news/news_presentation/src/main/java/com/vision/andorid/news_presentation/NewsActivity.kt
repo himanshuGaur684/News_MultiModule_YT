@@ -8,13 +8,16 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.vision.andorid.common_utils.Activities
 import com.vision.andorid.common_utils.Navigator
 import com.vision.andorid.news_presentation.databinding.ActivityNewsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NewsActivity : AppCompatActivity() {
+
 
     companion object {
         fun launchActivity(activity: Activity) {
@@ -23,12 +26,14 @@ class NewsActivity : AppCompatActivity() {
         }
     }
 
+    @Inject
+    lateinit var provider:Navigator.Provider
+
     private var _binding: ActivityNewsBinding? = null
     private val binding: ActivityNewsBinding
         get() = _binding!!
 
     private val newsViewModel: NewsViewModel by viewModels()
-
     private val newsAdapter = NewsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,13 +42,15 @@ class NewsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initView()
-
         setObservers()
 
     }
 
     private fun initView() {
         binding.rvArticles.adapter = newsAdapter
+        binding.ivGoToSearch.setOnClickListener {
+            provider.getActivities(Activities.SearchActivity).navigate(this)
+        }
     }
 
     private fun setObservers() {

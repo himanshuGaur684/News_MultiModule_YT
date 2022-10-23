@@ -6,4 +6,5 @@ object Constants {
     const val API_KEY=""
     const val CATEGORY="business"
     const val COUNTRY="us"
+
 }
