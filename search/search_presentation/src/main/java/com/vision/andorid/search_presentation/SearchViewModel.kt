@@ -1,6 +1,5 @@
 package com.vision.andorid.search_presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vision.andorid.common_utils.Resource
@@ -16,21 +15,21 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(private val getSearchArticleUseCase: GetSearchArticleUseCase) :
     ViewModel() {
 
-        private val _searchArticles = MutableStateFlow(SearchState())
-    val searchArticles : StateFlow<SearchState> = _searchArticles
+    private val _searchArticles = MutableStateFlow(SearchState())
+    val searchArticles: StateFlow<SearchState> = _searchArticles
 
 
-    fun getSearchArticles(map:MutableMap<String,String>){
+    fun getSearchArticles(map: MutableMap<String, String>) {
         getSearchArticleUseCase(map).onEach {
 
-            when(it){
-                is Resource.Loading->{
+            when (it) {
+                is Resource.Loading -> {
                     _searchArticles.value = SearchState(isLoading = true)
                 }
-                is Resource.Error->{
+                is Resource.Error -> {
                     _searchArticles.value = SearchState(error = it.message)
                 }
-                is Resource.Success->{
+                is Resource.Success -> {
                     _searchArticles.value = SearchState(data = it.data)
                 }
             }
